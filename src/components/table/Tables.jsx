@@ -1,180 +1,104 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
+import Spinner from '../Spinner/Spinner';
 
 
 
 
-const Tables = () => {
+const Tables = ({ column }) => {
+  console.log("🚀 ~ file: Tables.jsx:8 ~ Tables ~ column:", column)
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    // column.length == 0 ? "" : setData(column)
+    if (column.length != 0) {
+
+      const si = column.map(item => {
+
+        const {
+          file,
+          lines
+        } = item
+
+        return lines.map(element => {
+          const {
+            text,
+            number,
+            hexa
+          } = element
+          const all = {
+            file,
+            text,
+            number,
+            hexa
+          }
+          return all
+
+        })
+
+      })
+      setData(si.flat())
+    }
+
+
+
+  }, [column]);
+
+  if (data === undefined) console.log("undefined")
+
+  console.log(data.length === 0)
+
+  // if (data.length != 0) data.map(item => console.log(item,"todo"))
+  // if (data.length != 0) console.log([...data.flat()])
+
+
+
   return (
     <div>
-      <Table striped responsive="sm" >
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-        </tbody>
-      </Table>
-      <Table responsive="md">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-        </tbody>
-      </Table>
-      <Table responsive="lg">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-        </tbody>
-      </Table>
-      <Table responsive="xl">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-        </tbody>
-      </Table>
+
+
+
+
+      {
+        (data.length === 0) ? <Spinner /> :
+          <Table striped="columns" bordered hover responsive="md"  >
+            <thead>
+              <tr>
+
+                <th>File</th>
+                <th>Text</th>
+                <th>Number</th>
+                <th>Hexadecimal</th>
+
+              </tr>
+            </thead>
+            <tbody >
+              {
+                data.map(item => (
+
+                  <tr key={item.file}>
+
+                    <td>{item.file}</td>
+                    <td>{item.text}</td>
+                    <td>{item.number}</td>
+                    <td>{item.hexa}</td>
+
+                  </tr>
+
+
+                ))
+              }
+
+
+            </tbody>
+          </Table>
+
+      }
+
+
+
+
     </div>
   )
 }

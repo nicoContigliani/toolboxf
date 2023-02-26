@@ -14,23 +14,18 @@ const File = () => {
     useEffect(() => {
         onAction()
     }, [])
-    const {file} = useSelector(selectFile);
-    console.log("🚀 ~ file: File.jsx:17 ~ File ~ file:", file)
-    
-    
+    const { file } = useSelector(selectFile);
+
+
     const data = { url: 'http:///localhost:3001/files/', body: null, params: null, method: 'get', Token: 'aSuperSecretKey' }
     const onAction = async () => {
         dispatch(fileAsync(data))
     }
-    
+
 
     return (
         <div>
-            hola
-
-            <Tables/>
-
-
+            <Tables column={file} />
         </div>
     )
 }
