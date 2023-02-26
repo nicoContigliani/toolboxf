@@ -24,7 +24,7 @@ const File = () => {
 
 
     return (
-        <div>
+        <div className='container'>
             <Tables column={file} />
         </div>
     )

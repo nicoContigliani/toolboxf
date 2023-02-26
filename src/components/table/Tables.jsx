@@ -49,20 +49,11 @@ const Tables = ({ column }) => {
 
   console.log(data.length === 0)
 
-  // if (data.length != 0) data.map(item => console.log(item,"todo"))
-  // if (data.length != 0) console.log([...data.flat()])
-
-
-
   return (
-    <div>
-
-
-
-
+    <div className='table'>
       {
         (data.length === 0) ? <Spinner /> :
-          <Table striped="columns" bordered hover responsive="md"  >
+          <Table striped="columns"  >
             <thead>
               <tr>
 
