@@ -3,7 +3,8 @@ import useAxios from "../../hooks/useAxios";
 
 
 const initialState = {
-  file: []
+  file: [],
+  filter:[]
 };
 
 
@@ -15,6 +16,17 @@ export const fileAsync = createAsyncThunk(
      return response[0];
   }
 );
+
+
+export const fileFilterAsync = createAsyncThunk(
+  'fileFilter/axios',
+  async (data) => {
+     const response = await useAxios(data);
+     return response[0];
+  }
+);
+
+
 
 export const fileSlice = createSlice({
   name: 'file',
@@ -28,10 +40,15 @@ export const fileSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(fileFilterAsync.fulfilled, (state, action) => {      
+        state.file = action.payload;
+      })
       .addCase(fileAsync.fulfilled, (state, action) => {      
         state.file = action.payload;
       });
+      
   },
+
 });
 
 export const { file } = fileSlice.actions;

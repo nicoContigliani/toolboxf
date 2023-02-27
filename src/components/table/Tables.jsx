@@ -53,7 +53,7 @@ const Tables = ({ column }) => {
     <div className='table'>
       {
         (data.length === 0) ? <Spinner /> :
-          <Table striped="columns"  >
+          <Table striped="columns" bordered hover responsive="xl"  >
             <thead>
               <tr>
 
@@ -66,9 +66,9 @@ const Tables = ({ column }) => {
             </thead>
             <tbody >
               {
-                data.map(item => (
+                data.map((item,index)=> (
 
-                  <tr key={item.file}>
+                  <tr key={index}>
 
                     <td>{item.file}</td>
                     <td>{item.text}</td>
