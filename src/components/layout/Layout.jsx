@@ -10,8 +10,6 @@ const Layout = ({ children }) => {
 
     const [data, setData] = useState({ url: 'http:///localhost:3001/files/', body: null, params: null, method: 'get', Token: 'aSuperSecretKey' })
 
-
-
     const onAction = async () => {
          dispatch(fileFilterAsync(data))     
     }
@@ -27,19 +25,14 @@ const Layout = ({ children }) => {
                 setData={setData}
                 placeholder="test*.csv"
                 name="params"
-                className="inputLogin"
+                className="input"
+                type="text"
                 minlength="1"
                 required
-
+                onClick={() => onAction()}
             />
             <br />
-            <Buttons
-                onClick={() => onAction()}
-               
-
-                // textLavel="Buscar"
-               
-            />
+    
             {children}
 
         </div>
